@@ -23,6 +23,9 @@ void SelectionSort(std::vector<T>& vec);
 
 template<typename T>
 void InsertionSort(std::vector<T>& vec);
+
+template<typename T>
+void HeapSort(std::vector<T>& vec);
 }
 
 #endif /* algo_hpp */

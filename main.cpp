@@ -15,21 +15,24 @@ int main(int argc, const char * argv[]) {
     std::vector<int> vecOfBuble;
     std::vector<int> vecOfSelection;
     std::vector<int> vecOfInsertion;
-    
+    std::vector<int> vecOfHeaps;
     int num = 0;
-    for(int i = 2000;i>0;i--)
+    for(int i = 5;i>0;i--)
     {
         num = std::rand() % 100 + 1;
         vecOfBuble.push_back(num);
         vecOfSelection.push_back(num);
         vecOfInsertion.push_back(num);
+        vecOfHeaps.push_back(num);
     }
 
+    
     algo::SelectionSort(vecOfSelection);
     algo::BubbleSort(vecOfBuble);
     algo::InsertionSort(vecOfInsertion);
+    algo::HeapSort(vecOfHeaps);
     
-    for(auto val : vecOfBuble)
+    for(auto val : vecOfHeaps)
     {
         printf("%d\n",val);
     }

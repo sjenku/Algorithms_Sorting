@@ -65,6 +65,46 @@ void algo::InsertionSort(std::vector<T>& vec)
     }
 }
 
+template<typename T>
+static void heapify(std::vector<T>& vec,int size,int i)
+{
+    int largest = i;
+    int lc = i * 2 + 1;
+    int rc = i * 2 + 2;
+    if( lc < size && vec[lc] > vec[largest])
+    {
+        largest = lc;
+    }
+    if (rc < size && vec[rc] > vec[largest])
+    {
+        largest = rc;
+    }
+    if (largest != i)
+    {
+        T tmp = vec[largest];
+        vec[largest] = vec[i];
+        vec[i] = tmp;
+        heapify(vec,size,largest);
+    }
+}
+
+template<typename T>
+void algo::HeapSort(std::vector<T>& vec)
+{
+    Timer timer;
+    for(int i = static_cast<int>((vec.size() - 1) / 2 - 1) ; i >= 0 ;i-- )
+    {
+        heapify(vec,static_cast<int>(vec.size()), i);
+    }
+    
+    for(int i = static_cast<int>(vec.size() - 1);i>= 0;i--)
+    {
+        T root = vec[0];
+        vec[0] = vec[i];
+        vec[i] = root;
+        heapify(vec,i, 0);
+    }
+}
 
 template void algo::BubbleSort(std::vector<int>&);
 template void algo::BubbleSort(std::vector<float>&);
@@ -84,3 +124,8 @@ template void algo::InsertionSort(std::vector<double> &);
 template void algo::InsertionSort(std::vector<char> &);
 template void algo::InsertionSort(std::vector<std::string>&);
 
+template void algo::HeapSort(std::vector<int>&);
+template void algo::HeapSort(std::vector<float>&);
+template void algo::HeapSort(std::vector<double>&);
+template void algo::HeapSort(std::vector<char>&);
+template void algo::HeapSort(std::vector<std::string>&);
