@@ -26,6 +26,9 @@ void InsertionSort(std::vector<T>& vec);
 
 template<typename T>
 void HeapSort(std::vector<T>& vec);
+
+template<typename T>
+void QuickSort(std::vector<T>& vec,int firstIndex,int lastIndex);
 }
 
 #endif /* algo_hpp */

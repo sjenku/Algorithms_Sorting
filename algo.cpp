@@ -106,6 +106,47 @@ void algo::HeapSort(std::vector<T>& vec)
     }
 }
 
+template<typename T>
+static int partition(std::vector<T>& vec,int low,int high)
+{
+    int pivot = low;
+    int i = low;
+    int j = high;
+    while(i < j)
+    {
+        do
+        {
+            i++;
+        } while(vec[i] <= vec[pivot] && i<j);
+        
+         while (vec[j] > vec[pivot]) j--;
+        if (i < j)
+        {
+            T tmp = vec[i];
+            vec[i] = vec[j];
+            vec[j]  = tmp;
+        }
+    }
+    T tmp = vec[j];
+    vec[j] = vec[pivot];
+    vec[pivot] = tmp;
+    return j;
+}
+
+template<typename T>
+void algo::QuickSort(std::vector<T>& vec,int firstIndex,int lastIndex)
+{
+   if(firstIndex<lastIndex)
+   {
+       int seperator = partition(vec, firstIndex, lastIndex);
+       algo::QuickSort(vec, firstIndex, seperator - 1);
+       algo::QuickSort(vec, seperator+1, lastIndex);
+   }
+    
+}
+
+
+
 template void algo::BubbleSort(std::vector<int>&);
 template void algo::BubbleSort(std::vector<float>&);
 template void algo::BubbleSort(std::vector<double>&);
@@ -129,3 +170,9 @@ template void algo::HeapSort(std::vector<float>&);
 template void algo::HeapSort(std::vector<double>&);
 template void algo::HeapSort(std::vector<char>&);
 template void algo::HeapSort(std::vector<std::string>&);
+
+template void algo::QuickSort(std::vector<int>& vec,int firstIndex,int lastIndex);
+template void algo::QuickSort(std::vector<float>& vec,int firstIndex,int lastIndex);
+template void algo::QuickSort(std::vector<double>& vec,int firstIndex,int lastIndex);
+template void algo::QuickSort(std::vector<char>& vec,int firstIndex,int lastIndex);
+template void algo::QuickSort(std::vector<std::string>& vec,int firstIndex,int lastIndex);
