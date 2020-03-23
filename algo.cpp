@@ -10,6 +10,15 @@
 #include "Timer.hpp"
 
 
+
+template<typename T>
+static void Swap(T* const first,T* const second)
+{
+    T tmp = *first;
+    *first = *second;
+    *second = tmp;
+}
+
 template<typename T>
 void algo::BubbleSort(std::vector<T>& vec)
 {
@@ -20,9 +29,7 @@ void algo::BubbleSort(std::vector<T>& vec)
         {
             if (vec[j] > vec[j+1])
             {
-                T temp = vec[j];
-                vec[j] = vec[j+1];
-                vec[j+1] = temp;
+                Swap(&vec[j], &vec[j+1]);
             }
         }
     }
@@ -42,9 +49,7 @@ void algo::SelectionSort(std::vector<T>& vec)
                 CurrentMinIndex = j;
             }
         }
-        T tmp = vec[i];
-        vec[i] = vec[CurrentMinIndex];
-        vec[CurrentMinIndex] = tmp;
+        Swap(&vec[i], &vec[CurrentMinIndex]);
     }
 }
 
@@ -57,9 +62,7 @@ void algo::InsertionSort(std::vector<T>& vec)
         int j = i;
         while(j > 0 && vec[j - 1]>vec[j])
         {
-            T tmp = vec[j - 1];
-            vec[j - 1] = vec[j];
-            vec[j] = tmp;
+            Swap(&vec[j-1], &vec[j]);
             j--;
         }
     }
@@ -81,9 +84,7 @@ static void heapify(std::vector<T>& vec,int size,int i)
     }
     if (largest != i)
     {
-        T tmp = vec[largest];
-        vec[largest] = vec[i];
-        vec[i] = tmp;
+        Swap(&vec[largest], &vec[i]);
         heapify(vec,size,largest);
     }
 }
@@ -99,9 +100,7 @@ void algo::HeapSort(std::vector<T>& vec)
     
     for(int i = static_cast<int>(vec.size() - 1);i>= 0;i--)
     {
-        T root = vec[0];
-        vec[0] = vec[i];
-        vec[i] = root;
+        Swap(&vec[0], &vec[i]);
         heapify(vec,i, 0);
     }
 }
@@ -122,14 +121,10 @@ static int partition(std::vector<T>& vec,int low,int high)
          while (vec[j] > vec[pivot]) j--;
         if (i < j)
         {
-            T tmp = vec[i];
-            vec[i] = vec[j];
-            vec[j]  = tmp;
+            Swap(&vec[i], &vec[j]);
         }
     }
-    T tmp = vec[j];
-    vec[j] = vec[pivot];
-    vec[pivot] = tmp;
+    Swap(&vec[j], &vec[pivot]);
     return j;
 }
 
@@ -144,6 +139,7 @@ void algo::QuickSort(std::vector<T>& vec,int firstIndex,int lastIndex)
    }
     
 }
+
 
 
 

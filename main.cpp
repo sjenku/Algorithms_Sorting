@@ -11,31 +11,10 @@
 
 int main(int argc, const char * argv[]) {
     
-    std::srand(time(NULL));
-    std::vector<int> vecOfBuble;
-    std::vector<int> vecOfSelection;
-    std::vector<int> vecOfInsertion;
-    std::vector<int> vecOfHeaps;
-    int num = 0;
-    for(int i = 5;i>0;i--)
-    {
-        num = std::rand() % 100 + 1;
-        vecOfBuble.push_back(num);
-        vecOfSelection.push_back(num);
-        vecOfInsertion.push_back(num);
-        vecOfHeaps.push_back(num);
-    }
-
-    
-    algo::SelectionSort(vecOfSelection);
-    algo::BubbleSort(vecOfBuble);
-    algo::InsertionSort(vecOfInsertion);
-    algo::HeapSort(vecOfHeaps);
-    
-    for(auto val : vecOfHeaps)
-    {
+    std::vector<int> someVec {1,6,3,2,10,9,8,5,7,4};
+    algo::HeapSort(someVec);
+    for(auto val:someVec)
         printf("%d\n",val);
-    }
     
     
     return 0;
