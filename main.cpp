@@ -12,7 +12,8 @@
 int main(int argc, const char * argv[]) {
     
     std::vector<int> someVec {1,6,3,2,10,9,8,5,7,4};
-    algo::HeapSort(someVec);
+//    algo::MergeSort(someVec, 0, someVec.size()-1);
+    algo::MergeSort(someVec, 0, someVec.size()-1);
     for(auto val:someVec)
         printf("%d\n",val);
     

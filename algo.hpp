@@ -29,6 +29,10 @@ void HeapSort(std::vector<T>& vec);
 
 template<typename T>
 void QuickSort(std::vector<T>& vec,int firstIndex,int lastIndex);
+
+template<typename T>
+void MergeSort(std::vector<T>& vec,int l,int r);
+
 }
 
 #endif /* algo_hpp */

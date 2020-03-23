@@ -140,6 +140,69 @@ void algo::QuickSort(std::vector<T>& vec,int firstIndex,int lastIndex)
     
 }
 
+template<typename T>
+static void merge(std::vector<T>& vec,int l,int m,int r)
+{
+    int size1 = m - l + 1;
+    int size2 = r - m;
+    T tmpLeftArr[size1];
+    T tmpRightArr[size2];
+    int z = 0;
+    for(int i = l;i<=m;i++)  //Copy to tmp Arr All Left Side values
+    {
+        tmpLeftArr[z] = vec[i];
+        z++;
+    }
+    for(int i = m+1,z = 0;i<=r;i++)  //Copy to tmp Arr All Right Side values
+    {
+        tmpRightArr[z] = vec[i];
+        z++;
+    }
+    int i = 0;
+    int j = 0;
+    int k = l;
+    
+    while(i < size1 && j < size2)  //Compare and insert Elements/->Merge
+    {
+        if(tmpLeftArr[i] <= tmpRightArr[j])
+        {
+            vec[k] = tmpLeftArr[i];
+            i++;
+        }
+        else
+        {
+            vec[k] = tmpRightArr[j];
+            j++;
+        }
+        k++;
+    }
+    
+    while( i < size1 ) //Copy Remain Elements
+    {
+        vec[k] = tmpLeftArr[i];
+        i++;
+        k++;
+    }
+    
+    while ( j < size2 )
+    {
+        vec[k] = tmpRightArr[j];
+        j++;
+        k++;
+    }
+}
+
+template<typename T>
+void algo::MergeSort(std::vector<T>& vec,int l,int r)
+{
+    if(l<r)
+    {
+        int m = (r - l)/2 + l;
+        MergeSort(vec,l,m);
+        MergeSort(vec,m+1,r);
+        merge(vec,l,m,r);
+    }
+}
 
 
 
@@ -172,3 +235,9 @@ template void algo::QuickSort(std::vector<float>& vec,int firstIndex,int lastInd
 template void algo::QuickSort(std::vector<double>& vec,int firstIndex,int lastIndex);
 template void algo::QuickSort(std::vector<char>& vec,int firstIndex,int lastIndex);
 template void algo::QuickSort(std::vector<std::string>& vec,int firstIndex,int lastIndex);
+
+template void algo::MergeSort(std::vector<int>& vec,int l,int r);
+template void algo::MergeSort(std::vector<float>& vec,int l,int r);
+template void algo::MergeSort(std::vector<double>& vec,int l,int r);
+template void algo::MergeSort(std::vector<char>& vec,int l,int r);
+template void algo::MergeSort(std::vector<std::string>& vec,int l,int r);
